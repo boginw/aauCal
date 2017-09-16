@@ -1,17 +1,6 @@
 version: 1.0.{build}
-image: Visual Studio 2015
-configuration: Release
-
+image: Previous Visual Studio 2017
 before_build:
-  - nuget restore -DisableParallelProcessing
-
+- ps: nuget restore
 build:
-  publish_nuget: true               # package projects with .nuspec files and push to artifacts
-  publish_nuget_symbols: false      # generate and publish NuGet symbol packages
-  verbosity: minimal                # MSBuild verbosity level
-
-before_build:
- - ps: nuget restore "AAU Cal.sln"
-
-after_build:
-  - nunit-console ./AAU CalTests/bin/Debug/Tests.dll
+  verbosity: minimal
