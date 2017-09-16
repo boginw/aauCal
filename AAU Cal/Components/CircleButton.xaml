@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="AAU_Cal.Components.CircleButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AAU_Cal.Components"
+             mc:Ignorable="d"
+             xmlns:Style="clr-namespace:AAU_Cal"
+             d:DesignHeight="50" d:DesignWidth="50">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            FontSize="9"
+            Margin="0,15,0,5"
+            Foreground="#555"
+            VerticalAlignment="Bottom"
+            Text="{Binding WeekText,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}"
+            HorizontalAlignment="Center" />
+        
+        <Grid Grid.Row="1" Cursor="Hand" MouseUp="OnClick" Name="root" Width="50" Height="50">
+            <Ellipse>
+                <Ellipse.Style>
+                    <Style TargetType="{x:Type Ellipse}">
+                        <Setter Property="Fill" Value="Transparent" />
+                        <Setter Property="Opacity" Value="1.0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" Value="True">
+                                <Setter Property="Fill" Value="{StaticResource PrimaryBrush}"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=root, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                                <Setter Property="Fill" Value="{StaticResource PrimaryBrush}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
+            <TextBlock Text="{Binding Text,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" 
+                TextWrapping="Wrap"
+                VerticalAlignment="Center"
+                FontSize="15"
+                HorizontalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="Black" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsActive,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=root, Path=IsMouseOver}" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="AAU_Cal.Components.Lecture"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AAU_Cal.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Ellipse 
+            HorizontalAlignment="Right" 
+            Fill="{StaticResource PrimaryBrush}" 
+            Width="10" Height="10" />
+        <Grid
+            Margin="15,0,10,0"
+            Height="Auto"
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+            </Grid.RowDefinitions>
+            <Grid Background="White">
+                <StackPanel Margin="5">
+                    <TextBlock 
+                        Foreground="Gray" 
+                        FontSize="10" 
+                        Text="{Binding DateFromDateTo,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" />
+                    <TextBlock 
+                        Margin="0,-4,0,0"
+                        FontSize="20"
+                        TextTrimming="CharacterEllipsis"
+                        Text="{Binding LectureTitle,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" />
+                    <StackPanel 
+                        Margin="0,-3,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Foreground="#333"
+                            FontSize="14" 
+                            Margin="0,0,10,0"
+                            Text="{Binding LectorName,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" />
+                        <TextBlock
+                            Foreground="#333"
+                            FontSize="14" 
+                            Text="{Binding Location,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" />          
+                    </StackPanel>
+                    <TextBlock
+                            Foreground="#333"
+                            Margin="0,-2,0,0"
+                            FontSize="14" 
+                            Text="{Binding Note,RelativeSource={RelativeSource FindAncestor,AncestorType=ContentControl}}" />
+                </StackPanel>
+            </Grid>
+            <Rectangle Grid.Row="1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#dedede" Offset="0.0" />
+                        <GradientStop Color="Transparent" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</UserControl>
