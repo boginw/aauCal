@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AAU_Cal.Objects
 {
-    public class LectureCont
-    {
+    public class LectureCont {
         public string Title;
         public string Lector;
         public DateTime Start;
@@ -25,5 +24,33 @@ namespace AAU_Cal.Objects
             this.Location = Location;
             this.Note = Note;
         }
-    }
+
+		public override string ToString() {
+			return string.Format("{0}\n{1}\n{2} - {3}\n{4}\n{5}",
+				Title,
+				Lector,
+				Start, End,
+				Location,
+				Note);
+		}
+
+		public override bool Equals(object obj) {
+			if(!(obj is LectureCont)) {
+				return false;
+			}
+
+			LectureCont o = obj as LectureCont;
+
+			return Title.Equals(o.Title) && 
+				Lector.Equals(o.Lector) && 
+				Start.Equals(o.Start) && 
+				End.Equals(o.End) && 
+				Location.Equals(o.Location) && 
+				Note.Equals(o.Note);
+		}
+
+		public override int GetHashCode() {
+			return base.GetHashCode();
+		}
+	}
 }

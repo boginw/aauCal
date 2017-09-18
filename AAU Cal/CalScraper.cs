@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 
@@ -12,20 +13,24 @@ namespace AAU_Cal
 	public class CalScraper {
         private string url;
         private CultureInfo provider = CultureInfo.InvariantCulture;
-
+		private bool isFile = false;
 
         public CalScraper(string url) {
+			if(!url.StartsWith("http") && url.EndsWith(".html")) {
+				isFile = true;
+			}
             this.url = url;
 		}
 
-        public string GetPage()
-        {
+        public string GetPage() {
+			if(isFile) {
+				return File.ReadAllText(url);
+			}
             WebClient client = new WebClient { Encoding = System.Text.Encoding.UTF8 };
             return client.DownloadString(url);
         }
 
-        public LectureCont[] GetLectures()
-        {
+        public LectureCont[] GetLectures() {
             List<LectureCont> lectures = new List<LectureCont>();
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(GetPage());
