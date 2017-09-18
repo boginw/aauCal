@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AAU_Cal.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -102,6 +103,17 @@ namespace AAU_Cal.Components {
 			this.EndTime = EndTime;
 			this.Location = Location;
 			this.Note = Note;
+			this.DateFromDateTo = "";
+		}
+
+		public Lecture(LectureCont lecture) {
+			InitializeComponent();
+			this.LectureTitle = lecture.Title;
+			this.LectorName = lecture.Lector;
+			this.StartTime = lecture.Start;
+			this.EndTime = lecture.End;
+			this.Location = lecture.Location;
+			this.Note = lecture.Note;
 			this.DateFromDateTo = "";
 		}
 	}
