@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 
-namespace AAU_Cal.CalScraper
+namespace AAU_Cal
 {
 
 	public class CalScraper {
